@@ -59,6 +59,24 @@ with attribution. If you reuse it, cite the book repository above.
 | `created_date - date_report` distribution | `images/report_lag_distribution.png` |
 | Locations and three k-means clusters | `images/incident_clusters.png` |
 | Hexbin density | `images/incident_density_hexbin.png` |
+| Clusters split by date quality (robustness check) | `images/cluster_robustness.png` |
+
+### Robustness check (added after a peer review)
+
+A classmate's review of the first version raised the obvious risk: 62.3% of the rows have
+suspicious dates, so maybe the hotspot is simply built out of those rows. Splitting the 268
+reports by date quality and keeping the same three clusters:
+
+| rows | n | in the largest cluster | share |
+|---|---:|---:|---:|
+| all | 268 | 113 | 42.2% |
+| date-consistent (`created_date >= date_report`) | 101 | 46 | 45.5% |
+| date-inconsistent | 167 | 67 | 40.1% |
+
+The hotspot holds in both subsets (40.1% to 45.5% against 42.2% overall), so it is not an
+artefact of the bad dates - the two findings support each other instead of competing. The figure
+is `images/cluster_robustness.png`: filled markers are the date-consistent rows, open markers the
+inconsistent ones, and the counts are annotated next to each centroid.
 
 ## How to run
 
@@ -95,4 +113,4 @@ data-science-project/
 
 ## Author
 
-HE SHIHAO (mc66218) - University of Macau, CISC7204 Data Science and Data Visualization.
+HE SHIHAO - University of Macau, CISC7204 Data Science and Data Visualization.
